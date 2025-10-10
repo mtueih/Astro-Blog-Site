@@ -1,0 +1,29 @@
+---
+import { site } from "../config/site";
+
+// 接收 props 参数
+const {
+    pageTitle = "",
+    lang = site.lang,
+    description = site.description,
+} = Astro.props;
+
+const title = pageTitle ? pageTitle + " - " + site.title : site.title;
+---
+
+<html lang={lang}>
+    <!-- 通过变量控制 lang 属性的值 -->
+    <head>
+        <!-- 几乎固定的元信息 -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 页面标题、描述 -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <!-- 网站图标 -->
+        <link rel="icon" href={site.logo} />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
