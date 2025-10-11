@@ -76,7 +76,7 @@
 
 ## Astro 框架
 
-
+### 网站信息的管理
 
 ```sh
 pnpm create astro@latest -- --template minimal
