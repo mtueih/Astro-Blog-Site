@@ -1,0 +1,30 @@
+---
+import type { MenuItem } from "../config/NavMenu"; // 导入类型定义
+import { navMenu } from "../config/NavMenu"; // 导入菜单数据
+
+interface Props {
+	items?: MenuItem[]; // 菜单项数组，设为可选
+	depth?: number; // 当前深度，设为可选，默认为 0
+}
+
+const { items = navMenu, depth = 0 } = Astro.props; // 设置默认值
+---
+
+<ul class={`menu-list level-${depth}`}>
+	{
+		items.map((menuItem) => (
+			<li class={`menu-item level-${depth}`}>
+				{menuItem.href ? (
+					<a href={menuItem.href} class="menu-link">
+						{menuItem.label}
+					</a>
+				) : (
+					<span class="menu-label">{menuItem.label}</span>
+				)}
+				{menuItem.children && menuItem.children.length > 0 && (
+					<Astro.self items={menuItem.children} depth={depth + 1} />
+				)}
+			</li>
+		))
+	}
+</ul>
