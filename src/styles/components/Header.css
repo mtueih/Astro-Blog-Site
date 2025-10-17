@@ -1,0 +1,113 @@
+/* 默认隐藏汉堡菜单相关按钮 */
+.menu-toggle,
+.menu-collapse {
+    display: none;
+}
+
+header {
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 导航栏 branding 相关样式 */
+.site-logo {
+    /* 布局 */
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+
+    /* 连接样式 */
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-logo img {
+    max-height: 2.5rem;
+}
+
+.site-logo .site-title {
+    font-weight: bold;
+    font-size: 2rem;
+    text-wrap: nowrap;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav li {
+    text-wrap: nowrap;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav,
+    .header-tools,
+    .menu-collapse {
+        display: none;
+    }
+
+    header {
+        /*position: fixed;*/
+        /*top: 0;*/
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*height: 100vh;*/
+        /*width: 100%;*/
+        /*justify-content: space-between;*/
+        /*align-items: center;*/
+    }
+
+    .site-branding {
+
+        width: 100%;
+    }
+
+    /*.menu-collapse {*/
+    /*    margin-top: auto;*/
+    /*}*/
+
+    /*nav {*/
+    /*    overflow: auto;*/
+    /*    !*padding: 0 auto;*!*/
+    /*    width: 100%;*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+    /*}*/
+}
+
+@media (min-width: 769px) {
+    nav,
+    .header-tools {
+        display: block;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav {
+        overflow: hidden;
+    }
+
+    nav .level-0 ul {
+        display: none;
+    }
+
+    nav .level-0 {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+}

@@ -1,36 +1,37 @@
 ---
-import { siteInfo } from "../config/SiteInfo";
+import { siteInfo } from "../data/SiteInfo";
+
+interface Props {
+	pageTitle?: string;
+	pageDescription?: string;
+	pageLang?: string;
+}
 
 // 接收 props 参数
 const {
 	pageTitle = "",
-	lang = siteInfo.lang,
-	description = siteInfo.description,
-} = Astro.props;
+    pageDescription = "",
+    pageLang = siteInfo.lang,
+} : Props = Astro.props;
 
-const title = pageTitle ? `${pageTitle} - ${siteInfo.title}` : siteInfo.title;
+// 构建页面标题
+const title = pageTitle
+    ? `${pageTitle} - ${siteInfo.title}`
+    : siteInfo.title;
 ---
 
-<html lang={lang}>
-	<!-- 通过变量控制 lang 属性的值 -->
+<html lang={pageLang}>
 	<head>
-		<!-- 几乎固定的元信息 -->
+        <!--  -->
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- 页面标题、描述 -->
 		<title>{title}</title>
-		<meta name="description" content={description} />
+		{pageDescription && <meta name="description" content={pageDescription} />}
 		<!-- 网站图标 -->
 		<link rel="icon" href={siteInfo.icon} />
 		<!-- 全局 CSS 样式 -->
 		<link rel="stylesheet" href="/src/styles/global.css" />
-		<!-- Noto Sans SC 和 Fira Code 字体 -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Noto+Sans+SC:wght@100..900&display=swap"
-			rel="stylesheet"
-		/>
 	</head>
 	<body>
 		<slot />

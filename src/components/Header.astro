@@ -1,79 +1,39 @@
 ---
-import { siteInfo } from "../config/SiteInfo";
+import "../styles/components/Header.css"
+import {siteInfo} from "../data/SiteInfo";
 import NavMenuList from "../components/NavMenuList.astro";
-import { Icon } from "astro-icon/components";
+import {Icon} from "astro-icon/components";
 ---
 
 <header>
-	<div class="site-branding">
-		<a href="/" class="site-logo">
-			<img src={siteInfo.logo} alt="Logo" />
-			<span class="site-title">{siteInfo.title}</span>
-		</a>
-	</div>
+    <!-- 区域1：网站logo区域 -->
+    <div class="site-branding">
+        <a href="/" class="site-logo">
+            {siteInfo.logo && <img src={siteInfo.logo} alt="Logo"/>}
+            <span class="site-title">{siteInfo.title}</span>
+        </a>
+        <!-- 汉堡菜单按钮 -->
+        <button class="menu-toggle">
+            <Icon name="lucide:menu"/>
+        </button>
+    </div>
 
-	<button class="menu-toggle">
-		<Icon name="lucide:menu" />
-	</button>
+    <!-- 区域2：导航菜单区域 -->
+    <nav>
+        <NavMenuList/>
+    </nav>
 
-	<!-- 区域2：导航菜单区域 -->
-	<nav>
-		<NavMenuList />
-	</nav>
+    <!-- 区域3：工具区域 -->
+    <div class="header-tools">
+        <button class="theme-toggle">
+            <Icon name="lucide:sun-moon"/>
+        </button>
+    </div>
 
-	<!-- 区域3：工具区域 -->
-	<div class="header-tools"></div>
+    <!-- 收起菜单按钮 -->
+    <button class="menu-collapse">
+        <Icon name="lucide:chevron-up"/>
+    </button>
 </header>
 
-<style>
-	header,
-	.site-logo {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
 
-	header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-
-		padding: 0.5rem 1rem;
-
-		border-bottom: 1px solid #ccc;
-		/* test */
-		background-color: azure;
-	}
-
-
-
-	.header-logo {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.header-logo img {
-		min-height: 1rem;
-		max-height: 1.6rem;
-	}
-	.header-site-title {
-		font-size: 1.2rem;
-		font-weight: bold;
-
-		/* overflow: hidden; */
-		text-wrap: nowrap;
-	}
-	.header-logo a {
-		/* 布局 */
-		display: flex;
-		align-items: center;
-		gap: 0.1rem;
-		/* overflow: hidden; */
-		/* 连接样式 */
-		text-decoration: none;
-		color: black;
-
-		/* test */
-		background-color: #ccc;
-	}
-</style>
